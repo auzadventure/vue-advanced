@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div id="app">
+	<div  style='padding:50px'>
+		
+		<button v-for="tab in tabs" class='pure-button' @click='cTab = tab'> {{tab}}</button>
+
+		<h4>{{cTab}}</h4>
+		
+		<keep-alive>
+			<component :is="cTab"></component>
+		</keep-alive>
+	</div>
+
+</div>
+
+
+<script>
+
+Vue.component('one',{
+	template: `<div> One Component {{count}} 
+				<button class='pure-button' @click='increase'> Increase </button></div>`,
+	data() {
+		return {
+			count:1
+		}
+	},
+	methods: {
+		increase() {
+			this.count = this.count + 1;
+		}
+	}
+})
+
+
+Vue.component('two',{
+	template: "<div> two Component</div>"
+})
+
+
+var app = new Vue({
+	'el':'#app',
+	data: {
+		cTab: 'one',
+		tabs: ['one', 'two']
+	},
+
+	methods: {
+
+	}
+})
+</script>
+
+
+</body>
+</html> 

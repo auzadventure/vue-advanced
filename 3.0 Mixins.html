@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+<div id="app">
+
+	<button @click='sayHello'>Click Me</button>
+
+</div>
+
+
+<script>
+
+var myMixin = {
+	methods: {
+		sayHello() {
+			alert('hello')
+		}
+	}
+}
+
+//Global 
+Vue.mixin(myMixin)
+
+
+var app = new Vue({
+	'el':'#app',
+	mixins: [myMixin],
+
+	data: {
+
+	},
+
+	methods: {
+		sayHello() {
+			alert('hello my app')
+		}
+	},
+
+
+})
+</script>
+
+
+</body>
+</html> 
